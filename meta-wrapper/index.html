@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>Meta</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script>
+    onload = function() {
+        var webview = document.getElementById("meta_app");
+        webview.focus();
+        webview.addEventListener('new-window', function(e) {
+            require('shell').openExternal(e.url);
+        });
+
+        webview.addEventListener('page-title-set', function(e) {
+            if (e.title.indexOf("Settings") > -1) {
+                require('shell').openExternal("https://app.meta.sc/settings");
+                webview.goBack();
+            }
+        });
+    }
+    </script>
+</head>
+
+<body>
+    <div id="content">
+        <webview id="meta_app" src="https://app.meta.sc/" style="display:inline-block; width:100%; height:100%" autofocus></webview>
+    </div>
+</body>
+
+</html>
