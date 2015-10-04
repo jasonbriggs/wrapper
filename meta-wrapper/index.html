@@ -12,7 +12,7 @@
         });
 
         webview.addEventListener('page-title-set', function(e) {
-            if (e.title.indexOf("Settings") > -1) {
+            if (e.title.indexOf("Integrations") > -1) {
                 require('shell').openExternal("https://app.meta.sc/settings");
                 webview.goBack();
             }
