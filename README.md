@@ -24,8 +24,8 @@ Now you can just run `electron` to run electron:
 electron meta-wrapper
 ```
 
-main.js controls the native app 
-index.html is the page loaded by the native app, webview
+- main.js controls the native app 
+- index.html is the page loaded by the native app, webview
 
 ## Distribution
 
