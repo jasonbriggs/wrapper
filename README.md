@@ -12,7 +12,11 @@ It just wraps the web application at app.meta.sc in a native window.
 ## Development
 - Clone this repository with `git clone git@github.com:rastech/wrapper.git`
 - Install [node.js](https://nodejs.org) if necessary
-- `npm install -g electron-prebuilt' ([more info on electron-prebuilt here](https://github.com/mafintosh/electron-prebuilt))
+
+```
+npm install -g electron-prebuilt
+```
+([more info on electron-prebuilt here](https://github.com/mafintosh/electron-prebuilt))
 
 Now you can just run `electron` to run electron:
 
