@@ -8,7 +8,7 @@ var mainWindow = null;
 
 // Only truly close the main window when the application itself quits. Avoids
 // destroying/reloading the main window on window close 
-var quit = false;
+var trueQuit = false;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -17,7 +17,7 @@ app.on('window-all-closed', function() {
 
 // Quit when all windows are closed.
 app.on('before-quit', function() {
-    quit = true;
+    trueQuit = true;
     mainWindow.close();
     mainWindow = null;
 });
@@ -38,7 +38,7 @@ app.on('ready', function() {
 
     // Emitted when the window is closed.
     mainWindow.on('close', function(event) {
-        if (quit == false) {
+        if (trueQuit == false) {
             mainWindow.hide();
             event.preventDefault()
         }
