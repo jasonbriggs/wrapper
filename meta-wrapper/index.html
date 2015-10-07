@@ -8,7 +8,12 @@
         var webview = document.getElementById("meta_app");
         webview.focus();
         webview.addEventListener('new-window', function(e) {
-            require('shell').openExternal(e.url);
+            //if new tab popup evasion is attempted, cancel it
+            if (e.url == "https://app.meta.sc/") {
+                e.preventDefault();
+            } else {
+                require('shell').openExternal(e.url);
+            }
         });
 
         webview.addEventListener('page-title-set', function(e) {
@@ -26,7 +31,11 @@
         if (!navigator.onLine) {
             offline.style.visibility = "visible";
         } else if (navigator.onLine) {
-            document.getElementById("meta_app").reload()
+            try {
+                document.getElementById("meta_app").reload()
+            } catch(err) {
+                //not loaded yet
+            }
             offline.style.visibility = "hidden";
         }
       };
