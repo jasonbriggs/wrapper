@@ -4,7 +4,10 @@
     <title>Meta</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script>
+    
+
     onload = function() {
+
         var webview = document.getElementById("meta_app");
         webview.focus();
         webview.addEventListener('new-window', function(e) {
@@ -23,31 +26,16 @@
             }
         });
 
-        onlineStatus();
+        require('ipc').on('focus', function(message) {
+            webview.focus();
+            webview.executeJavaScript("document.getElementById('search').focus();");
+        });
     }
-
-    var onlineStatus = function() {
-        var offline = document.getElementById("offline");
-        if (!navigator.onLine) {
-            offline.style.visibility = "visible";
-        } else if (navigator.onLine) {
-            try {
-                document.getElementById("meta_app").reload()
-            } catch(err) {
-                //not loaded yet
-            }
-            offline.style.visibility = "hidden";
-        }
-      };
-      window.addEventListener('online',  onlineStatus);
-      window.addEventListener('offline',  onlineStatus);
     </script>
 </head>
 
 <body>
-    <div id="content">
-        <!-- offline proof of concept only, requires additional styling obviously -->
-        <p id="offline" style="position:absolute;bottom:0;width:200px;left:0;margin-left:1em;margin-bottom:1em;visibility:hidden;">You are now offline. During beta, Meta only works online. Please get back online to continue searching. Thanks!</p>
+    <div id="content">        
         <webview id="meta_app" src="https://app.meta.sc/" style="display:inline-block; width:100%; height:100%" autofocus></webview>
     </div>
 </body>

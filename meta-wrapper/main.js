@@ -222,5 +222,6 @@ Menu.setApplicationMenu(menu);
 app.on('activate-with-no-open-windows', function() {
     // Create the browser window.
     mainWindow.show();
-
+    mainWindow.focusOnWebView()
+    mainWindow.webContents.send('focus', 'searchbar');
 });
