@@ -29,6 +29,12 @@ electron meta-wrapper
 
 ## Distribution
 
+Install `electron-packager` with the following command:
+
+```
+npm i electron-packager -g
+```
+
 [Distribution](https://github.com/atom/electron/blob/master/docs/tutorial/application-distribution.md)
 
 [Packaging](https://github.com/atom/electron/blob/master/docs/tutorial/application-packaging.md)
