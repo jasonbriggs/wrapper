@@ -8,3 +8,16 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+#meta_app {
+	display:inline-block;
+	width:100%;
+	height:100%;
+}
+
+#loader {
+	width:200px;
+	margin: auto;
+  	position: absolute;
+ 	top: 0; left: 0; bottom: 0; right: 0;
+}

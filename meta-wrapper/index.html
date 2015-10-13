@@ -4,39 +4,41 @@
     <title>Meta</title>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script>
-    
-
-    onload = function() {
-
-        var webview = document.getElementById("meta_app");
-        webview.focus();
-        webview.addEventListener('new-window', function(e) {
-            //if new tab popup evasion is attempted, cancel it
-            if (e.url == "https://app.meta.sc/") {
-                e.preventDefault();
-            } else {
-                require('shell').openExternal(e.url);
-            }
-        });
-
-        webview.addEventListener('page-title-set', function(e) {
-            if (e.title.indexOf("Integrations") > -1) {
-                require('shell').openExternal("https://app.meta.sc/settings");
-                webview.goBack();
-            }
-        });
-
-        require('ipc').on('focus', function(message) {
+        onload = function() {
+            var webview = document.getElementById("meta_app");
             webview.focus();
-            webview.executeJavaScript("document.getElementById('search').focus();");
-        });
-    }
+
+            webview.addEventListener('new-window', function(e) {
+                //if new tab popup evasion is attempted, cancel it
+                if (e.url == "https://app.meta.sc/") {
+                    e.preventDefault();
+                } else {
+                    require('shell').openExternal(e.url);
+                }
+            });
+            webview.addEventListener('page-title-set', function(e) {
+                if (e.title.indexOf("Integrations") > -1) {
+                    require('shell').openExternal("https://app.meta.sc/settings");
+                    webview.goBack();
+                }
+            });
+            webview.addEventListener('dom-ready', function(e) {
+                document.getElementById("loader").style.visibility = "hidden";
+            });
+
+            // if the app is closed but not quit and then reopened, focus the search bar 
+            require('ipc').on('focus', function(message) {
+                webview.focus();
+                webview.executeJavaScript("document.getElementById('search').focus();");
+            });
+        }
     </script>
 </head>
 
 <body>
-    <div id="content">        
-        <webview id="meta_app" src="https://app.meta.sc/" style="display:inline-block; width:100%; height:100%" autofocus></webview>
+    <div id="content">
+        <img id="loader" src="loading.png">
+        <webview id="meta_app" src="https://app.meta.sc/" autofocus></webview>
     </div>
 </body>
 
